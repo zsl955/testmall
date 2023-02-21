@@ -9,7 +9,7 @@
 <script>
 import BScroll from 'better-scroll'
  export default {
-    name: "scroll",
+    name: "Scroll",
    data () {
      return {
         scroll: null
@@ -20,9 +20,18 @@ import BScroll from 'better-scroll'
    },
    mounted(){
     this.scroll = new BScroll(this.$refs.wrapper,{
-
+      click:true,
+      probeType: 3,
+      mouseWheel:true
     })
-   }
+   //  this.scroll.scrollTo(0,0)
+   },
+   methods: {
+      scrollTo(x,y,time =300){
+         console.log('!!!!!!'+this.scroll);
+         this.scroll.scrollTo(x,y,time);
+      }
+   },
  }
 </script>
 

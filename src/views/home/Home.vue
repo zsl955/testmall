@@ -3,7 +3,7 @@
     <nav-bar class="home-nav">
       <div slot="center">购物街</div>
     </nav-bar>
-    <scroll class="content">
+    <scroll class="content" ref="scroll">
       <HomeSwiper :banners="banners"></HomeSwiper>
         <RecommendView :recommends="recommends"></RecommendView>
         <FeatureView></FeatureView>
@@ -12,6 +12,7 @@
           @tabClick="tabClick"></tab-control>
         <goods-list :goods="showGoods"></goods-list>
     </scroll>
+    <back-top @click.native="backTopClick"></back-top>
   </div>
 </template>
 
@@ -30,6 +31,7 @@
     getHomeMultidata,
     getHomeGoods
   } from 'network/home.js';
+  import BackTop from '../../components/content/backTop/BackTop.vue';
   // import {Swiper, SwiperItem} from 'components/common/swiper'
 
   export default {
@@ -39,10 +41,11 @@
       TabControl,
       GoodsList,
       Scroll,
+      BackTop,
 
       HomeSwiper,
       RecommendView,
-      FeatureView,
+      FeatureView
     },
     data(){
       return{
@@ -82,6 +85,11 @@
           case 2: this.currentType = 'sell'; break;
 
         }
+       },
+       backTopClick(){
+
+        this.$refs.scroll.scrollTo(0,0,100)
+        console.log('..........'+ this.$refs.scroll);
        },
 
 
