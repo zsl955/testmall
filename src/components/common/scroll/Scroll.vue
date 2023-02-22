@@ -12,8 +12,19 @@ import BScroll from 'better-scroll'
     name: "Scroll",
    data () {
      return {
-        scroll: null
+        scroll: null,
+        default : 0
      }
+   },
+   props:{
+      probeType:{
+         type:Number,
+
+      },
+      pullUpLoad:{
+         type: Boolean,
+         default: false
+      }
    },
    components: {
 
@@ -21,15 +32,30 @@ import BScroll from 'better-scroll'
    mounted(){
     this.scroll = new BScroll(this.$refs.wrapper,{
       click:true,
-      probeType: 3,
-      mouseWheel:true
+      probeType: this.probeType,
+      mouseWheel:true,
+      pullUpLoad: this.pullUpLoad
     })
-   //  this.scroll.scrollTo(0,0)
+    this.scroll.on('scroll',(position)=>{
+      this.$emit('scroll', position);
+      // console.log(position);
+    })
+
+    this.scroll.on('pullingUp',()=>{
+      console.log('上拉加载更多')
+      this.$emit('pullingUp');
+    })
+
+
+
    },
    methods: {
       scrollTo(x,y,time =300){
          console.log('!!!!!!'+this.scroll);
          this.scroll.scrollTo(x,y,time);
+      },
+      finishPullUp(){
+         this.scroll && this.scroll.finishPullUp()
       }
    },
  }

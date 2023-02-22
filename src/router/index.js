@@ -8,6 +8,8 @@ const Cart = () =>
     import ('../views/cart/Cart')
 const Profile = () =>
     import ('../views/profile/Profile')
+const Detail =()=>
+    import ('../views/detail/Detail.vue')
 
 Vue.use(VueRouter)
 
