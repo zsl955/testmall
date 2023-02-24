@@ -1,6 +1,6 @@
 <template>
  <div class="goods-item" @click="itemClick">
-    <img :src="goodsItem.show.img" alt="" @load="imgLoad">
+    <img :src="showImage" alt="" @load="imgLoad">
     <div class="goods-info">
         <p>{{ goodsItem.title }}</p>
         <span class="price">{{ goodsItem.price }}</span>
@@ -17,6 +17,11 @@
 
      }
    },
+   computed:{
+    showImage(){
+      return this.goodsItem.image || this.goodsItem.show.img
+    }
+   },
    components: {
 
    },
@@ -25,7 +30,8 @@
       this.$bus.$emit('itemImageLoad')
     },
     itemClick(){
-      this
+      this.$router.push('/detail/'+ this.goodsItem.iid)
+
     }
    },
    props:{
@@ -39,7 +45,7 @@
  }
 </script>
 
-<style>
+<style scoped>
   .goods-item {
     padding-bottom: 40px;
     position: relative;
