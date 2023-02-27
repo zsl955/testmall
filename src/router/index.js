@@ -4,8 +4,8 @@ const Home = () =>
     import ('../views/home/Home')
 const Category = () =>
     import ('../views/category/Category')
-const Cart = () =>
-    import ('../views/cart/Cart')
+const ShopCart = () =>
+    import ('../views/shopcart/Shopcart')
 const Profile = () =>
     import ('../views/profile/Profile')
 const Detail =()=>
@@ -26,8 +26,8 @@ const routes = [{
         component: Category
     },
     {
-        path: '/cart',
-        component: Cart
+        path: '/shopcart',
+        component: ShopCart
     },
     {
         path: '/profile',

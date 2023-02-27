@@ -9,7 +9,7 @@
         <detail-param-info :param-info="paramInfo"></detail-param-info>
         <detail-comment-info :comment-info="commentInfo"></detail-comment-info>
         <goods-list :goods="recommends"></goods-list>
-        <detail-bottom-bar class="bottom-bar"></detail-bottom-bar>
+        <detail-bottom-bar @addCart="addCart"></detail-bottom-bar>
       <!-- </scroll> -->
     </div>
 </template>
@@ -112,6 +112,18 @@ export default {
         imageLoad(){
           console.log("----------");
           // this.$refs.scroll.scroll.refresh();
+        },
+        addCart(){
+          console.log(this.goods)
+          const product = {}
+          product.image = this.topImages[0];
+          product.title = this.goods.title;
+          product.desc = this.goods.desc;
+          product.price = this.goods.realPrice;
+          product.iid = this.iid; 
+          product.count = 1;
+
+          this.$store.commit('addCart',product)
         }
     },
 };
